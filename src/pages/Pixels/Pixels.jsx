@@ -1,63 +1,62 @@
 import React, { useEffect, useRef } from 'react';
-import { Circle } from './classBurbles';
-import { ClassMouse } from './classMouse';
+import { ClassEffects } from './classEffects';
+
+import {dataImg} from './img'
 
 let w = window.innerWidth; 
 let h = window.innerHeight; 
-
-const mouse = {
-  x: undefined,
+let mouse = {
+	x: undefined,
 	y: undefined
 }
-  
-const colorArray = ['#F5FF24', '#24FFA2', '#248BFF', '#8424FF']
-let circles = []
-let mouseCircle = 50
 
-const MoveBurbles = () => {
-  
+const Pixels = () => {
   const canvasRef = useRef(null);
-  
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     
-    for (let i = 0; i < 400; i++) {
-      circles.push(new Circle(w, h, mouse, colorArray, mouseCircle));
-    }
+    let image = document.getElementById('image')
+    
+    const effect = new ClassEffects(w, h, image)
+
+    effect.init(ctx);
+
+    
     const animate = () => {
+      ctx.clearRect(0, 0, w, h)
+      effect.draw(ctx);
+      effect.update();
       requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, w, h);
-      
-      let mouseC = new ClassMouse(w, h, mouseCircle, mouse)
-      
-      circles.forEach(circle => {
-        circle.draw(ctx)
-        circle.update()
-      })
-      
     }
     animate();
+    window.addEventListener('click', function() {
+      effect.warp()
+     })
   }, [])
-
-  
 
   const mousemove = (e)=> {
 		mouse.x = e.x;
-		mouse.y = e.y;
+		mouse.y = e.y;    
 	}
   
   const resizeReset = () =>{
-    w = window.innerWidth;
-		h = window.innerHeight;
+    w = canvas.width = window.innerWidth;
+		h = canvas.height = window.innerHeight;
 	}
   const mouseout = () => {
     mouse.x = undefined;
     mouse.y = undefined;  
   }
+  
 
   window.addEventListener("resize", resizeReset);
   window.addEventListener("mousemove", mousemove);
+  window.addEventListener("mouseout", function () {
+    mouse.x = undefined;
+    mouse.y = undefined
+  });
 
   return (<main>
   <div className='container_canvas' onMouseOut={mouseout}>
@@ -76,6 +75,7 @@ const MoveBurbles = () => {
     width={w}
     height={h}
    ></canvas>
+   <img id="image" src={dataImg[0]}></img>
   </div>
     <div className='section'></div>
   </main>
@@ -83,4 +83,4 @@ const MoveBurbles = () => {
   )
 }
 
-export default MoveBurbles
+export default Pixels

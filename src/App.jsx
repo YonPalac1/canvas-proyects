@@ -5,13 +5,14 @@ import Particles from './pages/particles/Particles';
 import Circlesonmouse from './pages/circlesOnMouse/Circlesonmouse';
 import Fire from './pages/fire/Fire';
 import MoveBurbles from './pages/moveBurbless/MoveBurbles';
+import Pixels from './pages/Pixels/Pixels';
 
 
 const App = () => {
 
   return (
     <div>
-      <MoveBurbles />
+      <Pixels />
     </div>
   )
 }
