@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Circle from './pages/circlesOnClick/Circle';
 import Particles from './pages/particles/Particles';
-import Circlesonmouse from './pages/circlesOnMouse/Circlesonmouse';
+import Circlesonmouse from './pages/circlesOnMouse/CirclesOnMouse';
 import Fire from './pages/fire/Fire';
 import MoveBurbles from './pages/moveBurbless/MoveBurbles';
 import Pixels from './pages/Pixels/Pixels';
