@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+}

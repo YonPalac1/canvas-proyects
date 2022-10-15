@@ -77,7 +77,6 @@ const Pixels = () => {
    ></canvas>
    <img id="image" src={dataImg[0]}></img>
   </div>
-    <div className='section'></div>
   </main>
 
   )

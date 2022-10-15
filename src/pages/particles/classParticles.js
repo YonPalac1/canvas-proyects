@@ -2,7 +2,7 @@ export class ClassParticle {
     constructor(mouse, hue, getRandomInt) {
         this.x = mouse.x;
         this.y = mouse.y;
-        this.size = Math.random() * 2 + 0.1;
+        this.size = Math.random() * 3 + 1;
         // this.rgb = rgb[getRandomInt(0, rgb.length - 1)];
         this.style = "hsl("+ hue +", 100%, 50%)";
         this.speedX = Math.random() * 2 - 1;

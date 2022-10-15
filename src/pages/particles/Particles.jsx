@@ -28,7 +28,10 @@ const Particles = () => {
 
       ctx.clearRect(0, 0, w, h);
       if (mouse.x !== undefined && mouse.y !== undefined) {
-        balls.push(new ClassParticle(mouse, hue, getRandomInt))
+        for (let i = 0; i < 2; i++) {
+
+          balls.push(new ClassParticle(mouse, hue, getRandomInt))
+        }
       }
       
       if (balls.length > 800) {
@@ -39,16 +42,17 @@ const Particles = () => {
         balls[i].update();
         balls[i].draw(ctx);
         for (let j = 0; j < balls.length; j++) {
-          const dx = balls[i].x + balls[j].x
-          const dy = balls[i].y + balls[j].y
-          const distance = Math.random(dx * dx + dy * dy);
-          if (distance < 40) {
+          const dx = balls[i].x - balls[j].x
+          const dy = balls[i].y - balls[j].y
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
             ctx.beginPath();
             ctx.strokeStyle = balls[i].style;
             ctx.lineWidth = balls[i].size / 10;
             ctx.moveTo(balls[i].x, balls[i].y)
             ctx.lineTo(balls[j].x, balls[j].y)
             ctx.stroke();
+            ctx.closePath();
           }
         }
         if (balls[i].size <= 0.3) {
@@ -104,7 +108,6 @@ const Particles = () => {
     height={h}
    ></canvas>
   </div>
-    <div className='section'></div>
   </main>
 
   )

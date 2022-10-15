@@ -77,7 +77,6 @@ const MoveBurbles = () => {
     height={h}
    ></canvas>
   </div>
-    <div className='section'></div>
   </main>
 
   )
